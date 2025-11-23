@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Test Page</title>
+	<style>
+		body { font-family: Arial, sans-serif; padding: 20px; }
+		.container { max-width: 800px; margin: 0 auto; }
+		button { padding: 10px 20px; margin: 5px; cursor: pointer; }
+		#form-container { background: #f5f5f5; padding: 20px; border-radius: 8px; }
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1 id="main-title">Test Page for Browser Tools</h1>
+
+		<div id="form-container" class="form-wrapper">
+			<form id="test-form">
+				<div>
+					<label for="username">Username:</label>
+					<input type="text" id="username" name="username">
+				</div>
+				<div>
+					<label for="password">Password:</label>
+					<input type="password" id="password" name="password">
+				</div>
+				<button type="submit" id="submit-btn" class="btn btn-primary">Submit</button>
+				<button type="button" id="cancel-btn" class="btn btn-secondary">Cancel</button>
+			</form>
+		</div>
+
+		<div id="content">
+			<h2>Links</h2>
+			<ul>
+				<li><a href="https://example.com/page1" class="external-link">Page 1</a></li>
+				<li><a href="https://example.com/page2" class="external-link">Page 2</a></li>
+				<li><a href="https://example.com/page3" class="external-link">Page 3</a></li>
+			</ul>
+
+			<h2>Test Elements</h2>
+			<div class="test-elements">
+				<span id="counter" data-count="0">0</span>
+				<button onclick="document.getElementById('counter').textContent = parseInt(document.getElementById('counter').textContent) + 1">
+					Increment
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		// Test script
+		window.testData = {
+			title: document.title,
+			linkCount: document.querySelectorAll('a').length,
+			hasForm: document.querySelector('form') !== null
+		};
+	</script>
+</body>
+</html>
