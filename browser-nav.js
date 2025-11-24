@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-import { chromium } from "playwright";
+import { connectToActivePage, closeBrowser } from "./shared/browser.js";
+import { printSuccess } from "./shared/format.js";
 
 const url = process.argv[2];
 const newTab = process.argv[3] === "--new";
@@ -13,19 +14,15 @@ if (!url) {
 	process.exit(1);
 }
 
-const browser = await chromium.connectOverCDP("http://localhost:9222");
-const contexts = browser.contexts();
-const context = contexts[0];
+const { browser, context, page } = await connectToActivePage();
 
 if (newTab) {
-	const page = await context.newPage();
-	await page.goto(url, { waitUntil: "domcontentloaded" });
-	console.log("✓ Opened:", url);
+	const newPage = await context.newPage();
+	await newPage.goto(url, { waitUntil: "domcontentloaded" });
+	printSuccess(`Opened: ${url}`);
 } else {
-	const pages = context.pages();
-	const page = pages[pages.length - 1];
 	await page.goto(url, { waitUntil: "domcontentloaded" });
-	console.log("✓ Navigated to:", url);
+	printSuccess(`Navigated to: ${url}`);
 }
 
-await browser.close();
+await closeBrowser(browser);
