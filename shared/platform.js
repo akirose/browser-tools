@@ -125,7 +125,7 @@ export async function waitForProcessTermination(maxWaitMs = 3000) {
  * @returns {string} Temp directory path
  */
 export function getTempDir() {
-	return join(homedir(), ".cache/scraping");
+	return join(homedir(), ".cache/browser-tools");
 }
 
 /**

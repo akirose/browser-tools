@@ -117,7 +117,7 @@ describe('shared/platform.js', () => {
 			const { getTempDir } = await import('../../../shared/platform.js');
 
 			const path = getTempDir();
-			expect(path).toContain('.cache/scraping');
+			expect(path).toContain('.cache/browser-tools');
 		});
 	});
 
